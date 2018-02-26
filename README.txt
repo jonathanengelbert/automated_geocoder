@@ -12,8 +12,8 @@ FUNCTIONALITY:
 1 -> Parses through Excel spreadsheet looking for address data
 
 	* Column must be named "Address", "address", "Location" or "location"
-	* Target column name above must be unique
-	* Excel file must be name "test.xlsx"
+	* Target column named above must be unique
+	* Excel file must be named "test.xlsx"
 	* .xls files are not accepted
 
 2 -> Standardizes address input observing the Enterprise Address System database format
@@ -26,7 +26,7 @@ FUNCTIONALITY:
      "123 1st street, Apt 345"  --> "123 1st st"
  * Apostrophes are removed and leave no whitespace in between characters
  * Ranges (as in "517-520 1st Street") are eliminated. Only the first
-   number in the range must is kept
+   number in the range is kept
  * No fractions in addresses (as in 10/2 Market Street)
  * Streets and avenues from 1-9 must have leading zeroes (as in
    7th street --> 07th street
@@ -111,7 +111,7 @@ CONSTRAINS AND POTENTIAL ISSUES
 
 * Syntax of all scripts observes Python3 rules, EXCEPT for 
   automated_geocoder.py, which calls for user input with strict Python2
-  syntax. If environment is uses Python 3, line 9 must be altered to reflect 
+  syntax. If environment uses Python 3, line 9 must be altered to reflect 
   new syntax (raw_input ---> input) 
 
 * Program overwrites all data everytime is processed
@@ -128,7 +128,24 @@ PRODUCTION AND FEATURES TO BE IMPLEMENTED
 * REGEX improvements (as edge cases are identified)
 * UI improvements?
 * Reduce runtime?
-
+* Maybe print a message at the end with summary of the results - saying something like: 
+     Ended successfully!
+     Cleaned addresses are stored in the I:\GIS\OASIS\Geocoder\transformed.xlsx spreadsheet
+     Results are in this geodatabase: I:\GIS\OASIS\Geocoder\geocoder.gdb
+     Geocoded feature class is called Final. Those not geocoded are flagged with a U in the geocoder field.
+     X were geocoded by EAS, Y by street centerlines, Z were not geocoded.   95.5% success rate.
+   
+* It's easy to lock the geodatabase (and locking will be more likely once multiple people are using it) - so could we add
+   a check for the lock and then print a message saying that it's locked and then end the script, rather than it 
+   just crashing if it's locked?
+* It expects the latitude, longitude and zip fields to be numbers (reasonably), but occasionally they are not - 
+   e.g. if there is text in the zip field then it crashes when writing to the failed_table.  Also, sometimes ' ' 
+   (empty text string) appears to be getting written to the failed_table for the latitude or longitude, which
+   causes it to crash.  Changing the zip, latitude and longitude fields to text in the failed_table and the final merge
+   might fix this...or possibly do some check (select followed by field calc) to change the empty strings to nulls and 
+   removing any non-numeric characters from the fields.  
+   "I:\GIS\OASIS\Requests\2018\20180104_Geocode\Businesses_Clean.xlsx" is a good one for testing this.
+      
 
 *******************************************************************************
 
