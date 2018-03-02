@@ -9,14 +9,18 @@ Author: Jonathan Engelbert (Jonathan.Engelbert@sfgov.org)
 
 FUNCTIONALITY:
 
-1 -> Parses through Excel spreadsheet looking for address data
+
+1 -> Wipes out and compacts target geodatabase (I:\GIS\OASIS\Geocoder\geocoder.gdb)
+
+
+2 -> Parses through Excel spreadsheet looking for address data
 
 	* Column must be named "Address", "address", "Location" or "location"
-	* Target column named above must be unique
+	* Target column name above must be unique
 	* Excel file must be named "test.xlsx"
 	* .xls files are not accepted
 
-2 -> Standardizes address input observing the Enterprise Address System database format
+3 -> Standardizes address input observing the Enterprise Address System database format
 
  * Address types are abbreviated, following the standards found here:
    
@@ -48,13 +52,13 @@ FUNCTIONALITY:
  * Handles addresses commonly entered without address type
  * Handles assorted edge cases as they are identified
 
-3 -> Generates new spreadsheet 
+4 -> Generates new spreadsheet 
 
 * Writes new column to the next available column in original spreadsheet
 * Saves workbook changes and writes address transformations
 * New spreadsheet generated is named "transformed.xlsx"
 
-4 -> Geocodes spreadsheet (optional)
+5 -> Geocodes spreadsheet (optional)
 
 * Program looks for excel file named "transformed.xls"
 * Converts to table
@@ -144,7 +148,7 @@ IMPLEMENTED -->  Maybe print a message at the end with summary of the results -
  	         X were geocoded by EAS, Y by street centerlines, Z were not geocoded.   95.5% success rate.
    
 
-* It expects the latitude, longitude and zip fields to be numbers (reasonably), but occasionally they are not - 
+IMPLEMENTED -->  It expects the latitude, longitude and zip fields to be numbers (reasonably), but occasionally they are not - 
    e.g. if there is text in the zip field then it crashes when writing to the failed_table.  Also, sometimes ' ' 
    (empty text string) appears to be getting written to the failed_table for the latitude or longitude, which
    causes it to crash.  Changing the zip, latitude and longitude fields to text in the failed_table and the final merge
