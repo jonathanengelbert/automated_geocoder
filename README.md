@@ -1,18 +1,18 @@
 # Automated Geocoder
 
-This program was first developed for the Urban Planning Department of the City and County of San Francisco,to facilitate the mapping of data provided via spreadsheets.
+This program was first developed for the Urban Planning Department of the City and County of San Francisco, to facilitate the mapping of data provided via spreadsheets.
 
 The program first standardizes addresses bases on standards set by the city for the city. It generates a new spreadsheet as output. It then proceeds to geocode(optionally) the newly generated spreadsheet, using two in-house geocoders.
 
 This script can be easily picked apart and modified to serve the same purpose in different environments, or using different datasets/software.
 
 
-##Last Modified
+## Last Modified
 
 The final version of this program was released 02/23/2018.
 Subsequent updates may follow as needed.
 
-##Functionality
+## Functionality
 
 1 -> Wipes out and compacts target geodatabase (I:\GIS\OASIS\Geocoder\geocoder.gdb)
 
@@ -50,9 +50,9 @@ Subsequent updates may follow as needed.
  * Transforms BAYSHORE BLVD --> BAY SHORE BLVD
  * Handles Embarcadero Center Transformations as:
       1 embarcadero center --> 301 CLAY ST
-      2 embarcadero center �-> 201 CLAY ST
-      3 embarcadero center �-> 101 CLAY ST
-      4 embarcadero center �-> 150 DRUMM ST
+      2 embarcadero center --> 201 CLAY ST
+      3 embarcadero center --> 101 CLAY ST
+      4 embarcadero center --> 150 DRUMM ST
  * Handles addresses commonly entered without address type
  * Handles assorted edge cases as they are identified
 
@@ -114,7 +114,7 @@ Subsequent updates may follow as needed.
 
 * Syntax of all scripts observes Python3 rules, EXCEPT for
   automated_geocoder.py, which calls for user input with strict Python2
-  syntax. If environment uses Python 3, line 9 must be altered to reflect
+  syntax. If environment uses Python3, line 50 must be altered to reflect
   new syntax (raw_input ---> input)
 
 * Program overwrites all data everytime is processed
@@ -155,7 +155,7 @@ IMPLEMENTED -->  It expects the latitude, longitude and zip fields to be numbers
 	         might fix this...or possibly do some check (select followed by field calc) to change the empty strings to nulls and
 	         removing any non-numeric characters from the fields.  
  	         "I:\GIS\OASIS\Requests\2018\20180104_Geocode\Businesses_Clean.xlsx" is a good one for testing this.
-					 
+
 ## Authors
 
 * **Jonathan Engelbert** - *Sole Developer* - [jonathanengelbert](https://github.com/jonathanengelbert/)
