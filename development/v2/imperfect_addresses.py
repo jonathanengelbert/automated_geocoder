@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+#==============================================================================
 
 #IMPERFECT ADDRESSES
-#
-#Description: This script standardizes addresses provided in an excel workbook
-#Last Modified: 02/02/2018
-###############################################################################
 
+# Last Modified: 02/02/2018
+
+# Author: Jonathan Engelbert (Jonathan.Engelbert@sfgov.org)
+# Description: This script standardizes addresses provided in an excel workbook
 
 #FUNCTIONALITY:
 #
@@ -49,6 +50,7 @@
 # --> Writes new header for column with value addresses
 # --> Saves workbook changes
 
+#==============================================================================
 
 
 import openpyxl
@@ -559,13 +561,13 @@ def transform():
 
     #Saves the workbook
     wb.save('transformed.xlsx')
-    
+    print("ADDRESSES SUCCESSFULLY PROCESSED\n")
 #------------------------------------------------------------------------------
     #CONDITIONAL FOR EXTERNAL EXECUTION
 
 if __name__ == "__main__":
     transform()
-    print("\nADDRESSES SUCCESSFULLY PROCESSED")
+
 #------------------------------------------------------------------------------
 
 
